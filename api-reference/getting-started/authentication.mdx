@@ -1,0 +1,49 @@
+---
+title: 'Authentication'
+description: 'Use the INOP Hire dashboard to get your API key.'
+---
+
+<Note>
+    If you're not looking to build API reference, you export dataset directly from the dashboard.
+</Note>
+
+ 1. Login in to your [INOP Hire](https://beta.inop.ai) account.
+
+ 2. Click on the top right to go to profile settings
+
+ 3. Click generate API key button under API Credentials tab.
+
+## Using the API Key
+
+Once you have generated your API key, you need to include it in the header of each API request. The API key is passed in the header using the following format:
+
+```
+x-api-key: YOUR_API_KEY
+```
+
+### Example Request
+Here is an example of how to include the API key in a cURL request:
+
+```
+curl -X GET https://public.api.micro1.ai/interview \
+-H "x-api-key: YOUR_API_KEY"
+```
+
+#### Header Details
+    * Header Name: x-api-key
+
+    * Header Value: YOUR_API_KEY Replace YOUR_API_KEY with the actual API key you generated from the client portal.
+
+#### Error Handling
+If your API key is missing, invalid, or expired, the API will respond with an error. Below are common HTTP status codes related to authentication:
+
+    * 401 Unauthorized: The request was made without a valid API key or the key was incorrect.
+    * 403 Forbidden: The API key does not have the necessary permissions to access the requested resource.
+
+##### Example Error Response
+```json
+{
+  "status": false,
+  "message": "Unauthorized: API key is missing or invalid."
+}
+```
