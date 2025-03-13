@@ -70,9 +70,8 @@
     {
       "group": "ATS Candidates",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/candidates/get-all",
+        "api-reference/candidates/get"
       ]
     }
   ],

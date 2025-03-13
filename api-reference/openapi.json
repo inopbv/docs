@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://public.api.inop.ai"
+      "url": "http://public.api.inop.ai/v1/"
     }
   ],
   "security": [
@@ -35,11 +35,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "List of job titles",
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": "List of job titles"
+                    },
                     "data": {
                       "type": "array",
                       "default": [
@@ -151,27 +159,24 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
                       "type": "string",
-                      "default": "d1ae83a0-0bd2-5354-8c0e-1eefbbe1131e"
+                      "default": "Details of a job title"
                     },
-                    "name": {
-                      "type": "string",
-                      "default": "Data Scientist"
-                    },
-                    "career_group": {
-                      "type": "string",
-                      "default": "AI & Data Management"
-                    },
-                    "related": {
-                      "type": "array",
-                      "default": []
-                    },
-                    "mapping": {
+                    "date": {
                       "type": "object",
                       "default": {
-                        "names": [],
-                        "skills": []
+                        "id": "d1ae83a0-0bd2-5354-8c0e-1eefbbe1131e",
+                        "name": "Data Scientist",
+                        "career_group": "AI & Data Management",
+                        "mapping": {
+                          "names": [],
+                          "skills": []
+                        }
                       }
                     }
                   }
@@ -214,27 +219,28 @@
         },
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Normalized job title",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
                       "type": "string",
-                      "default": "d1ae83a0-0bd2-5354-8c0e-1eefbbe1131e"
+                      "default": "Normalized job title"
                     },
-                    "name": {
-                      "type": "string",
-                      "default": "Data Scientist"
-                    },
-                    "job_levels": {
-                      "type": "array",
-                      "default": []
-                    },
-                    "confidence": {
-                      "type": "integer",
-                      "default": 1
+                    "data": {
+                      "type": "object",
+                      "default": {
+                        "id": "d1ae83a0-0bd2-5354-8c0e-1eefbbe1131e",
+                        "name": "Data Scientist",
+                        "confidence": 1,
+                        "job_levels": []
+                      }
                     }
                   }
                 }
@@ -270,11 +276,19 @@
         ],
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "List of skills",
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": ""
+                    },
                     "data": {
                       "type": "array",
                       "default": [
@@ -380,12 +394,20 @@
         ],
         "responses": {
           "200": {
-            "description": "Retrieved job title",
+            "description": "Retrieved skill",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": "Details of a skill"
+                    },
                     "data": {
                       "type": "object",
                       "default": {
@@ -446,6 +468,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": "List of related skills"
+                    },
                     "data": {
                       "type": "array",
                       "default": [
@@ -497,7 +527,125 @@
         }
       }
     },
-    "/candidates/{id}": {
+    "/ats/{jobId}/candidates": {
+      "get": {
+        "description": "Returns all candidates by job ID",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All candidates response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": ""
+                    },
+                    "data": {
+                      "type": "array",
+                      "default": [
+                        {
+                          "id": "1238b802-34b0-406e-bbc1-fd2bce07ce9a",
+                          "name": "Networker"
+                        },
+                        {
+                          "id": "298e27aa-3341-44b7-8fd4-a331d64f47e7",
+                          "name": "Network Engineer/Network Administrator"
+                        },
+                        {
+                          "id": "3c6d58e7-c4be-4f45-be3e-a949c37bc939",
+                          "name": "Networking Technician"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "job titles response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "default": [
+                        {
+                          "id": "1238b802-34b0-406e-bbc1-fd2bce07ce9a",
+                          "name": "Networker"
+                        },
+                        {
+                          "id": "298e27aa-3341-44b7-8fd4-a331d64f47e7",
+                          "name": "Network Engineer/Network Administrator"
+                        },
+                        {
+                          "id": "3c6d58e7-c4be-4f45-be3e-a949c37bc939",
+                          "name": "Networking Technician"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ats/{jobId}/candidates/{hiringId}": {
       "get": {
         "description": "Get a single skill based on the ID supplied",
         "parameters": [
@@ -519,6 +667,14 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "default": true
+                    },
+                    "messages": {
+                      "type": "string",
+                      "default": ""
+                    },
                     "data": {
                       "type": "object",
                       "default": {
