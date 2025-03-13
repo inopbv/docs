@@ -1,49 +1,61 @@
 ---
-title: 'Overview'
+title: 'Overview: Job Title API'
 description: 'v0.0.1'
 ---
 
 <Note>
-    If you're not looking to build API reference, you export dataset directly from the dashboard.
+    Note: By default, all clients are allowed a maximum of 5 requests per second. Contact us here if you need an adjustment
 </Note>
-
- 1. Login in to your [INOP Hire](https://beta.inop.ai) account.
-
- 2. Click on the top right to go to profile settings
-
- 3. Click generate API key button under API Credentials tab.
 
 ## Overview
 
-Once you have generated your API key, you need to include it in the header of each API request. The API key is passed in the header using the following format:
+**INOP Job Titles API** is a powerful and structured job classification system designed to bring consistency and intelligence to job title data. This API provides access to **INOP’s comprehensive library of job titles**, complete with **normalization capabilities**, **curated job title groupings**, and **skill mappings** for each title.
 
-```
-x-api-key: YOUR_API_KEY
-```
+Organizations often deal with inconsistent, ambiguous, or unstructured job titles in hiring processes, job postings, and workforce analytics. **Job Titles API** addresses this challenge by offering a **standardized framework** to:
+    * **Normalize raw job titles** – Convert unstructured job titles into standardized INOP-defined titles.
+    * **Group related job titles** – Access curated job title clusters for better role categorization.
+    * **Map job titles to required skills** – Gain insights into core and associated skills for each title.
 
-### Example Request
-Here is an example of how to include the API key in a cURL request:
 
-```
-curl -X GET https://public.api.micro1.ai/interview \
--H "x-api-key: YOUR_API_KEY"
-```
+### Access the INOP Job Titles Library
+    * Retrieve a comprehensive list of standardized job titles used across industries.
+    * Use predefined taxonomies for consistent classification.
 
-#### Header Details
-    * Header Name: x-api-key
+### Normalize Raw Job Titles
+    * Transform **raw, unstructured, or company-specific job titles** into **INOP-defined job titles**.
+    * Improve data quality in **HR systems, ATS platforms, and workforce analytics**.
 
-    * Header Value: YOUR_API_KEY Replace YOUR_API_KEY with the actual API key you generated from the client portal.
+#### Example Request
+    Here is an example of how to include the API key in a cURL request:
 
-#### Error Handling
-If your API key is missing, invalid, or expired, the API will respond with an error. Below are common HTTP status codes related to authentication:
+    **Raw Title → Standardized Title**
+        * “Sr. Software Eng.” → Senior Software Engineer
+        * “Frontend Dev” → Frontend Developer
+        * “AI Specialist” → Machine Learning Engineer
 
-    * 401 Unauthorized: The request was made without a valid API key or the key was incorrect.
-    * 403 Forbidden: The API key does not have the necessary permissions to access the requested resource.
+### Retrieve Curated Job Title Groupings
+    * Identify **hierarchical and related job families** (e.g., Engineering, Data Science, Product).
+    * Enable **better career pathing and internal mobility insights**.
 
-##### Example Error Response
+#### Example Request
+    Here is an example of how to include the API key in a cURL request:
+
+    * **Software Engineer falls** under the **Software Development** job family.
+    * **Machine Learning Engineer** is categorized under **AI & Data Science**.
+
+### Fetch Skill Mappings for Job Titles
+    * Discover **essential technical & soft skills** required for each job title.
+    * Get **role-specific skill expectations** to aid in **hiring, training, and skills gap analysis**.
+
+##### Example:
+For **Software Engineer**, the API might return:
 ```json
 {
-  "status": false,
-  "message": "Unauthorized: API key is missing or invalid."
+  "job_title": "Software Engineer",
+  "skills": {
+    "primary": ["Python", "Java", "System Design"],
+    "secondary": ["Cloud Computing", "DevOps"],
+    "soft_skills": ["Problem-Solving", "Collaboration"]
+  }
 }
 ```

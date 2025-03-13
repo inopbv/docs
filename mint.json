@@ -54,7 +54,9 @@
       "group": "Job Titles",
       "pages": [
         "api-reference/job-titles/overview",
-        "api-reference/job-titles/get-all"
+        "api-reference/job-titles/get-all",
+        "api-reference/job-titles/get",
+        "api-reference/job-titles/normalize"
       ]
     },
     {
