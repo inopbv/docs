@@ -23,7 +23,7 @@
   ],
   "topbarCtaButton": {
     "name": "Book a demo",
-    "url": "https://beta.inop.ai"
+    "url": "https://client.inop.ai/book-a-call"
   },
   "anchors": [
     {
@@ -77,8 +77,6 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "linkedin": "https://linkedin.com/company/inop"
   }
 }
