@@ -254,6 +254,300 @@
         }
       }
     },
+    "/skills": {
+      "get": {
+        "description": "Returns job title from the system that the user has access to",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The maximum number of results to return",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "default": [
+                        {
+                          "id": "1238b802-34b0-406e-bbc1-fd2bce07ce9a",
+                          "name": "Networker"
+                        },
+                        {
+                          "id": "298e27aa-3341-44b7-8fd4-a331d64f47e7",
+                          "name": "Network Engineer/Network Administrator"
+                        },
+                        {
+                          "id": "3c6d58e7-c4be-4f45-be3e-a949c37bc939",
+                          "name": "Networking Technician"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "job titles response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "default": [
+                        {
+                          "id": "1238b802-34b0-406e-bbc1-fd2bce07ce9a",
+                          "name": "Networker"
+                        },
+                        {
+                          "id": "298e27aa-3341-44b7-8fd4-a331d64f47e7",
+                          "name": "Network Engineer/Network Administrator"
+                        },
+                        {
+                          "id": "3c6d58e7-c4be-4f45-be3e-a949c37bc939",
+                          "name": "Networking Technician"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills/{id}": {
+      "get": {
+        "description": "Get a single skill based on the ID supplied",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of skill to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved job title",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "default": {
+                        "id": "3a51eea5-feec-47e5-bdf2-b8bca3448f94",
+                        "name": "C (Programming Language)",
+                        "description": null,
+                        "type": {
+                          "name": "Specialized Skill"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/skills/related": {
+      "post": {
+        "description": "Returns a list of skills that are related to the requested skills",
+        "requestBody": {
+          "description": "Returns a list of skills that are related to the requested skills",
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "ids": {
+                    "type": "array",
+                    "default": [
+                      "12bc945b-bafb-4021-9289-928171296ea1",
+                      "fccf214c-5215-4f30-ac72-73797d785981",
+                      "8102bdec-d0da-4c25-bd77-69b5c6151b4f"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Retrieved related skills",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "default": [
+                        {
+                          "id": "12bc945b-bafb-4021-9289-928171296ea1",
+                          "name": "Algorithms",
+                          "type": {
+                            "name": "Specialized Skill"
+                          }
+                        },
+                        {
+                          "id": "fccf214c-5215-4f30-ac72-73797d785981",
+                          "name": "C# (Programming Language)",
+                          "type": {
+                            "name": "Specialized Skill"
+                          }
+                        },
+                        {
+                          "id": "3a51eea5-feec-47e5-bdf2-b8bca3448f94",
+                          "name": "C++ (Programming Language)",
+                          "type": {
+                            "name": "Specialized Skill"
+                          }
+                        },
+                        {
+                          "id": "e7821270-163b-44ce-b98d-4e71d1e516ae",
+                          "name": "Debugging",
+                          "type": {
+                            "name": "Specialized Skill"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/candidates/{id}": {
+      "get": {
+        "description": "Get a single skill based on the ID supplied",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of skill to get",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved job title",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "default": {
+                        "id": "3a51eea5-feec-47e5-bdf2-b8bca3448f94",
+                        "name": "C (Programming Language)",
+                        "description": null,
+                        "type": {
+                          "name": "Specialized Skill"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/plants": {
       "get": {
         "description": "Returns all plants from the system that the user has access to",
