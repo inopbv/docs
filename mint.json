@@ -63,8 +63,8 @@
       "group": "Skills",
       "pages": [
         "api-reference/skills/overview",
-        "api-reference/skills/get-all",
-        "api-reference/skills/get"
+        "api-reference/skills/get",
+        "api-reference/skills/related"
       ]
     },
     {
