@@ -9,35 +9,41 @@ description: 'v0.0.1'
 
 ## Overview
 
-INOP's complete collection of skills. This API exposes all of our skills along with their type and unique identifier. Reach us at [support@inop.ai](mailto:support@inop.ai) to learn more about INOP's skills taxonomy.
+**INOP Skills API**, a comprehensive and structured skills taxonomy designed to support **skills-based hiring, workforce planning, and talent intelligence**. This API provides access to **INOP’s complete collection of skills**, each uniquely identified and categorized by skill type.
 
-```
-x-api-key: YOUR_API_KEY
-```
+Organizations often struggle with **inconsistent skill definitions** and **unstructured skill data** when evaluating candidates, employees, or job descriptions. INOP Skills API standardizes skill classification, making it easier to integrate **AI-powered skill intelligence** into your hiring and workforce management processes.
 
-### Example Request
-Here is an example of how to include the API key in a cURL request:
+For additional details about INOP’s skills taxonomy, reach us at [support@inop.ai](mailto:support@inop.ai)
 
-```
-curl -X GET https://public.api.micro1.ai/interview \
--H "x-api-key: YOUR_API_KEY"
-```
 
-#### Header Details
-    * Header Name: x-api-key
+### Retrieve Complete Skills Collection
+* Access a **comprehensive list of skills** across multiple domains, including:
+    * **Technical Skills** (e.g., Python, Machine Learning, Cloud Computing)
+    * **Soft Skills** (e.g., Leadership, Adaptability, Critical Thinking)
+    * **Industry-Specific Skills** (e.g., Financial Modeling, Legal Compliance)
 
-    * Header Value: YOUR_API_KEY Replace YOUR_API_KEY with the actual API key you generated from the client portal.
+### Fetch Skill Metadata & Classification
+* Each skill entry includes:
+    * **Unique Skill Identifier** (UUID) for precise referencing
+    * **Skill Name** (standardized naming convention)
+    * **Skill Type** (e.g., technical, soft, industry-specific)
 
-#### Error Handling
-If your API key is missing, invalid, or expired, the API will respond with an error. Below are common HTTP status codes related to authentication:
 
-    * 401 Unauthorized: The request was made without a valid API key or the key was incorrect.
-    * 403 Forbidden: The API key does not have the necessary permissions to access the requested resource.
-
-##### Example Error Response
+##### Example Response
 ```json
 {
-  "status": false,
-  "message": "Unauthorized: API key is missing or invalid."
+  "skills": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "name": "Machine Learning",
+      "type": "Technical"
+    },
+    {
+      "id": "223e4567-e89b-12d3-a456-426614174001",
+      "name": "Leadership",
+      "type": "Soft Skill"
+    }
+  ]
 }
+
 ```
